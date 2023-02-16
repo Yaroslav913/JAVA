@@ -62,7 +62,11 @@ public class App extends JFrame {
                 float step = Float.parseFloat((String) data.get(2));
                 double result = 0;
                 for (float i = min;i < max-step;i += step){
-                    result += (Math.cos(i) + Math.cos(i+step))/2*step;
+                    if ( i>max ){
+                        result += (Math.cos(i-step) + Math.cos(max))/2*step;
+                    }
+                    else{
+                        result += (Math.cos(i) + Math.cos(i+step))/2*step;
                 }
                 model.setValueAt(result,temp,3);
             }
