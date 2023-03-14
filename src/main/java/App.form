@@ -94,7 +94,7 @@
           <component id="789d5" class="javax.swing.JTable" binding="table" custom-create="true">
             <constraints/>
             <properties>
-              <autoCreateRowSorter value="false"/>
+              <autoCreateRowSorter value="true"/>
               <name value=""/>
             </properties>
           </component>
