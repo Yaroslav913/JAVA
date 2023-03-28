@@ -33,13 +33,36 @@ public class App extends JFrame {
         model.addColumn("down");
         model.addColumn("step");
         model.addColumn("result");
-
         addButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String up = App.this.up.getText();
                 String down = App.this.down.getText();
                 String step = App.this.step.getText();
+                try{
+                  if ((Float.parseFloat(up)<0.000001) || (Float.parseFloat(up)>1000000)||(Float.parseFloat(down)<0.000001) || (Float.parseFloat(down)>1000000)||(Float.parseFloat(step)<0.000001) || (Float.parseFloat(step)>1000000)){
+                      throw new ExceptionInput("wrong input");
+                    }
+                }
+                catch(ExceptionInput ex){
+                    App.this.up.setText("");
+                    App.this.down.setText("");
+                    App.this.step.setText("");
+                    new ExceptionWarning();
+                    return;
+                }
+                try{
+                    if (Float.parseFloat(up)<Float.parseFloat(down)){
+                        throw new ExceptionInput("wrong input");
+                    }
+                }
+                catch(ExceptionInput ex){
+                    App.this.up.setText("");
+                    App.this.down.setText("");
+                    App.this.step.setText("");
+                    new ExceptionUpDown();
+                    return;
+                }
                 model.addRow(new String[]{up,down,step,"0"});
                 App.this.up.setText("");
                 App.this.down.setText("");
