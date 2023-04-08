@@ -1,9 +1,22 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecIntegral {
+public class RecIntegral implements Serializable {
     private List<String> record;
-
+    public static RecIntegral fromString(String inputData) {
+        StringBuffer sb =new StringBuffer(inputData);
+        sb.delete(0,20);
+        sb.delete(sb.length()-2,sb.length());
+        List<String> localstring = List.of(sb.toString().split(", "));
+        return new RecIntegral(localstring);
+    }
+    @Override
+    public String toString() {
+        return "RecIntegral{" +
+                "record=" + record +
+                '}';
+    }
     public List<String> getRecord() {
         return record;
     }
