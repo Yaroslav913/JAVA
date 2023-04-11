@@ -162,6 +162,11 @@ public class App extends JFrame {
                 fileChooser.showOpenDialog(null);
                 ObjectInputStream in = null;
                 RecIntegral restObj = null;
+                int temp = table.getRowCount();
+                if (temp != -1 ){
+                    for (int i = 0; i < temp; i++) {
+                        model.removeRow(0);
+                    }}
                 try {
                     in = new ObjectInputStream(new BufferedInputStream(
                             new FileInputStream(fileChooser.getSelectedFile().getAbsolutePath())));
@@ -198,12 +203,18 @@ public class App extends JFrame {
                 fileChooser.showOpenDialog(null);
                 ObjectInputStream in = null;
                 RecIntegral restObj = null;
+                int temp = table.getRowCount();
+                if (temp != -1 ){
+                    for (int i = 0; i < temp; i++) {
+                        model.removeRow(0);
+                    }}
                 try {
                     in = new ObjectInputStream(new BufferedInputStream(
                             new FileInputStream(fileChooser.getSelectedFile().getAbsolutePath())));
                     restObj = RecIntegral.fromString((String) in.readObject());
                     data.add(restObj);
                     model.addRow(restObj.getRecord().toArray());
+
                 }
                 catch (IOException | ClassNotFoundException ex ) {
                     ex.printStackTrace();
